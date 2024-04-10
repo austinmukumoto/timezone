@@ -111,6 +111,12 @@ class Timezone:
                                 },
                                 timeout=timeout
                             )
+                            
+                            if resp_timezone_get.json().get('status') != 'OK':
+                                print('Error in pulling timezone get')
+                                self.error_logging(resp_timezone_get.json().get('message'))
+                                return
+                            
                             print(f'Timezone http status code response: {resp_timezone_get.status_code}')
                             print(f'Timezone list response: {resp_timezone_get.json()}')
                             
